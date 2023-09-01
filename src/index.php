@@ -4,18 +4,26 @@ use DynamicsWebApi\Helper;
 
 require_once 'vendor/autoload.php';
 
-$guid = $argv[1];
-$filePath = $argv[2];
+$webResourceData = $argv[1];
 
-if (!file_exists($filePath)) {
-	echo "File not found: $filePath\n";
-	exit(1);
-}
-
-$base64Contents = base64_encode(file_get_contents($filePath));
-
+$seperatedWebResourceData = explode('|', $webResourceData);
 $helper = new Helper();
-$helper->updateEntity('webresourceset', $guid, [
-	'content' => $base64Contents,
-]);
+foreach ($seperatedWebResourceData as $datum) {
+	$seperatedDatum = explode(',', $datum);
+	if (count($seperatedDatum) !== 2) {
+		throw new Exception('Sorry, the web resource data is not in the correct format. It needs to be something like 0000-0000-0000-0000,path/to/file.js and we received' . $datum);
+	}
+	$guid = $seperatedDatum[0];
+	$filePath = $seperatedDatum[1];
+	if (!Helper::isValidGuid($guid)) {
+		throw new Exception('Sorry, the guid is not in the correct format. It needs to be something like 0000-0000-0000-0000 and we received' . $guid);
+	}
+	if (!file_exists($filePath)) {
+		throw new Exception('Sorry, the file does not exist. We received ' . $filePath);
+	}
+	$base64Contents = base64_encode(file_get_contents($filePath));
+	$helper->updateEntity('webresourceset', $guid, [
+		'content' => $base64Contents,
+	]);
+}
 $helper->publishAllChanges();

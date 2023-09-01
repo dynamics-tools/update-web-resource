@@ -16,11 +16,8 @@ inputs:
     tenant-id:
       description: 'The Tenant ID of your Azure AD application connected to your Microsoft Dynamics instance app user'
       required: true
-    web-resource-guid:
-      description: 'The ID of the web resource to update'
-      required: true
-    web-resource-file-path:
-      description: 'the file path to the web resource content. ie -> web-resources/js/my-script.js'
+    web-resource-data-to-update:
+      description: 'A | seperated list of the web resource data to update. You provide the guid and the filepath seperated by a comma. So 000-000-000-000,path/to/file.js|000-000-000-001,path/to/file.css'
       required: true
 runs:
   using: "composite"
@@ -42,4 +39,4 @@ runs:
         APPLICATION_ID: ${{ inputs.application-id }}
         APPLICATION_SECRET: ${{ inputs.application-secret }}
         TENANT_ID: ${{ inputs.tenant-id }}
-      run: php ${{ github.action_path }}/src/index.php "${{ inputs.web-resource-guid }}" "${{ inputs.web-resource-file-path }}"
+      run: php ${{ github.action_path }}/src/index.php "${{ inputs.web-resource-data-to-update }}"

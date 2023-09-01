@@ -11,8 +11,7 @@ This GitHub Action automates the process of deploying and then publishing a new 
 - `client-id` - **Required**. The Client ID of the application created in Microsoft Azure that connects to the application user
 - `client-secret` - **Required**. The Client Secret of the application created in Microsoft Azure that connects to the application user
 - `tenant-id` - **Required**. The Tenant ID of the application created in Microsoft Azure that connects to the application user
-- `web-resource-guid` - **Required**. The GUID of the web resource you want to update. If you don't know how to get that - please visit this website: https://www.guidgenerator.com/online-guid-generator.aspx
-- `web-resource-file-path` - **Required** This is the path to the file that has the content you want to update your web resource with. This can be a relative path from the root of your repository or an absolute path. If you are using a relative path, make sure you are using the `actions/checkout@v2` action before this action.
+- `web-resource-data-to-update` - **Required**. The guid and file path of the web resource(s) that you would like to update. You provide the guid and file path seperated by a comma, like this: `000-000-000-000,path/to/file.js` and if you want to update multiple web resources: `000-000-000-000,path/to/file.js|000-000-000-000,path/to/file2.js`
 
 Best practice would be holding the first four values as repository secrets and then using them as secrets instead of plain values. Here is documentation about how to use secrets in GitHub Actions: https://docs.github.com/en/actions/security-guides/encrypted-secrets
 
@@ -30,8 +29,7 @@ To include this action in your GitHub Workflow, add the following step:
         application-id: '0000-0000-0000-0000' # alternatively secrets.APPLICATION_ID
         application-secret: '.akdjfoawiefe-~kdja' # alternatively secrets.APPLICATION_SECRET
         tenant-id: '0000-0000-0000-0000' # alternatively secrets.TENANT_ID
-        web-resource-guid: '0000-0000-0000-0000'
-        web-resource-file-path: 'path/to/file.js'
+        web-resource-data-to-update: '0000-0000-0000-0000,path/to/file.js|0000-0000-0000-0000,path/to/file2.js'
 ```
 
 ### Example Workflow
@@ -58,4 +56,5 @@ jobs:
         application-id: secrets.APPLICATION_ID
         application-secret: secrets.APPLICATION_SECRET
         tenant-id: secrets.TENANT_ID
+        web-resource-data-to-update: '0000-0000-0000-0000,path/to/file.js'
 ```
