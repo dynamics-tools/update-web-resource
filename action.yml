@@ -1,0 +1,39 @@
+name: 'Put name to action here'
+description: 'Put description for action here'
+branding:
+  icon: 'arrow-up-right'
+  color: 'blue'
+inputs:
+    dynamics-url:
+        description: 'The URL of your Microsoft Dynamics instance'
+        required: true
+    application-id:
+        description: 'The Application ID of your Azure AD application connected to your Microsoft Dynamics instance app user'
+        required: true
+    application-secret:
+        description: 'The Application Secret of your Azure AD application connected to your Microsoft Dynamics instance app user'
+        required: true
+    tenant-id:
+        description: 'The Tenant ID of your Azure AD application connected to your Microsoft Dynamics instance app user'
+        required: true
+runs:
+  using: "composite"
+  steps:
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Install Dependencies
+      run: composer install -d ${{ github.action_path }}/src/ -o
+      shell: bash
+
+    - name: Publish all changes
+      shell: bash
+      env:
+        INSTANCE_URL: ${{ inputs.dynamics-url }}
+        APPLICATION_ID: ${{ inputs.application-id }}
+        APPLICATION_SECRET: ${{ inputs.application-secret }}
+        TENANT_ID: ${{ inputs.tenant-id }}
+      run: php ${{ github.action_path }}/src/index.php

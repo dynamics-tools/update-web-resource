@@ -1,0 +1,5 @@
+{
+    "require": {
+        "dynamics-tools/dynamics-web-api-php-wrapper": "^1.0"
+    }
+}

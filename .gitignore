@@ -1,0 +1,19 @@
+# Vendor directory
+vendor/
+
+# Composer files
+composer.lock
+composer.phar
+
+# IDE-specific
+/.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS + Windows
+._*
