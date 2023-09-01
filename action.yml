@@ -1,5 +1,5 @@
-name: 'Put name to action here'
-description: 'Put description for action here'
+name: 'Update Web Resource in Dynamics'
+description: 'Use this action to update a web resource in your dynamics 365 CRM instance'
 branding:
   icon: 'arrow-up-right'
   color: 'blue'
