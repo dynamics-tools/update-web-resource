@@ -8,8 +8,8 @@ This GitHub Action automates the process of deploying and then publishing a new 
 
 ## Inputs
 - `dynamics-url` - **Required**. The URL of your Dynamics instance. This is not the API URL, this is the URL you can find when you are using the application (ie -> yourorg.crm.dynamics.com not yourorg.api.crm.dynamics.com).
-- `client-id` - **Required**. The Client ID of the application created in Microsoft Azure that connects to the application user
-- `client-secret` - **Required**. The Client Secret of the application created in Microsoft Azure that connects to the application user
+- `application-id` - **Required**. The Client ID of the application created in Microsoft Azure that connects to the application user
+- `application-secret` - **Required**. The Client Secret of the application created in Microsoft Azure that connects to the application user
 - `tenant-id` - **Required**. The Tenant ID of the application created in Microsoft Azure that connects to the application user
 - `web-resource-data-to-update` - **Required**. The guid and file path of the web resource(s) that you would like to update. You provide the guid and file path seperated by a comma, like this: `000-000-000-000,path/to/file.js` and if you want to update multiple web resources: `000-000-000-000,path/to/file.js|000-000-000-000,path/to/file2.js`
 
