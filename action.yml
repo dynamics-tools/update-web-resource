@@ -29,8 +29,8 @@ runs:
         php-version: '8.2'
 
     - name: Install Dependencies
-      run: composer install -d ${{ github.action_path }}/src/ -o
       shell: bash
+      run: composer install -d "$GITHUB_ACTION_PATH/src/" -o
 
     - name: Publish all changes
       shell: bash
@@ -39,4 +39,4 @@ runs:
         APPLICATION_ID: ${{ inputs.application-id }}
         APPLICATION_SECRET: ${{ inputs.application-secret }}
         TENANT_ID: ${{ inputs.tenant-id }}
-      run: php ${{ github.action_path }}/src/index.php "${{ inputs.web-resource-data-to-update }}"
+      run: php "$GITHUB_ACTION_PATH/src/index.php" "${{ inputs.web-resource-data-to-update }}"
