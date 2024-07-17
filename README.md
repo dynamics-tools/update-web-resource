@@ -23,7 +23,7 @@ To include this action in your GitHub Workflow, add the following step:
 
 ```yaml
     - name: Publish changes to Microsoft Dynamics instance
-      uses: dynamics-tools/update-web-resource@v1.0.1
+      uses: dynamics-tools/update-web-resource@v2.0.2
       with:
         dynamics-url: 'https://example.com' # alternatively secrets.DYNAMICS_URL
         application-id: '0000-0000-0000-0000' # alternatively secrets.APPLICATION_ID
@@ -50,7 +50,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Publish changes to Microsoft Dynamics instance
-      uses: dynamics-tools/update-web-resource@v1.0.1
+      uses: dynamics-tools/update-web-resource@v2.0.2
       with:
         dynamics-url: secrets.DYNAMICS_URL
         application-id: secrets.APPLICATION_ID
